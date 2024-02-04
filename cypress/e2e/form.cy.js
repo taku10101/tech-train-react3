@@ -2,9 +2,9 @@
 
 describe("template spec", () => {
   it("passes", () => {
-    cy.visit("http://localhost:5173");
+    cy.visit("http://localhost:3000");
 
-    const email = "taku1011htmail.com";
+    const email = "taku1011htm@ail.com";
     cy.get('input[type="email"]').type(email);
     cy.get('input[type="password"]').type("password");
     cy.get('button[type="submit"]').click();
