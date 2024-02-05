@@ -2,7 +2,7 @@ import React from "react";
 import FormProvider from "../components/FormProvider";
 import TextFieldComponent from "../components/TextFieldComponent";
 
-const Signup = () => {
+const SignupForm = () => {
   const onSubmit = (data) => {
     console.log(data);
   };
@@ -32,4 +32,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default SignupForm;
