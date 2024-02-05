@@ -1,6 +1,6 @@
 const baseURL = "https://railway.bookreview.techtrain.dev";
 
-const signup = async (email: string, password: string) => {
+export const signup = async (email, password) => {
   const response = await fetch(`${baseURL}/users`, {
     method: "POST",
     headers: {
@@ -11,7 +11,7 @@ const signup = async (email: string, password: string) => {
   return response.json();
 };
 
-const signin = async (email: string, password: string) => {
+export const signin = async (email, password) => {
   const response = await fetch(`${baseURL}/signin`, {
     method: "POST",
     headers: {

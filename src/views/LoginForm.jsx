@@ -2,9 +2,16 @@ import React from "react";
 import FormProvider from "../components/FormProvider";
 import TextFieldComponent from "../components/TextFieldComponent";
 
+import { signin } from "../api/auth";
+
 const LoginForm = () => {
   const onSubmit = (data) => {
-    console.log(data);
+    const { email, password } = data;
+    try {
+      signin({ email, password });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

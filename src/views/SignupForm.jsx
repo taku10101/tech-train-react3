@@ -1,10 +1,16 @@
 import React from "react";
 import FormProvider from "../components/FormProvider";
 import TextFieldComponent from "../components/TextFieldComponent";
-
+import { signup } from "../api/auth";
 const SignupForm = () => {
   const onSubmit = (data) => {
-    console.log(data);
+    const { email, password } = data;
+
+    try {
+      signup({ email, password });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
