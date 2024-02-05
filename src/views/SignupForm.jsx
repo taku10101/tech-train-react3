@@ -8,16 +8,23 @@ const SignupForm = () => {
 
     try {
       signup({ email, password });
+      console.log(data);
     } catch (error) {
       console.error(error);
+      console.log(data);
     }
   };
 
   return (
     <FormProvider
-      defaultValues={{ email: "", password: "" }}
+      defaultValues={{ name: "", email: "", password: "" }}
       onSubmit={onSubmit}
     >
+      <TextFieldComponent
+        name='name'
+        label='name'
+        validationRules={{ required: "First Name is required" }}
+      />
       <TextFieldComponent
         name='email'
         label='Email'
