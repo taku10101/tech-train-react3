@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import FormTest from "../ components/FormTest";
+import FormTest from "../views/FormTest";
 
 test("formが存在することを確認", () => {
   render(<FormTest />);
