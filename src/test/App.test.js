@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
-import App from "../App";
+import FormTest from "../ components/FormTest";
 
 test("formが存在することを確認", () => {
-  render(<App />);
+  render(<FormTest />);
   //formに emailとpasswordのinputがあるか確認
   const emailInput = screen.getByLabelText("Email"); //labelのfor属性とinputのid属性が一致しているか確認
   const passwordInput = screen.getByLabelText("Password");

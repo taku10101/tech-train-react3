@@ -1,16 +1,17 @@
-function App() {
+import React from "react";
+import { Routes, BrowserRouter, Route } from "react-router-dom";
+import FormTest from "./ components/FormTest";
+import Login from "./ components/Login";
+const App = () => {
   return (
-    <div>
-      <form>
-        <label htmlFor='email'>Email</label>
-        <input id='email' type='email' />
-
-        <label htmlFor='password'>Password</label>
-        <input id='password' type='password' />
-        <button type='submit'>Submit</button>
-      </form>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<h1>Welcome to the home page</h1>} />
+        <Route path='/form-test' element={<FormTest />} />
+        <Route path='/login' element={<Login />} />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;

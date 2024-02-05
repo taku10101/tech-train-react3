@@ -2,7 +2,7 @@
 
 describe("template spec", () => {
   it("passes", () => {
-    cy.visit("http://localhost:3000");
+    cy.visit("http://localhost:3000/form-test");
 
     const email = "taku1011htm@ail.com";
     cy.get('input[type="email"]').type(email);
