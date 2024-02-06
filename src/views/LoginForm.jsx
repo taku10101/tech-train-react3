@@ -1,42 +1,42 @@
-import React from "react";
-import FormProvider from "../components/FormProvider";
-import TextFieldComponent from "../components/TextFieldComponent";
-
+import { useForm } from "react-hook-form";
 import { signin } from "../api/auth";
-
 const LoginForm = () => {
-  const onSubmit = (data) => {
-    const { email, password } = data;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
     try {
-      signin({ email, password });
+      const response = await signin(data);
+      console.log(response);
     } catch (error) {
       console.error(error);
     }
   };
 
   return (
-    <FormProvider
-      defaultValues={{ email: "", password: "" }}
-      onSubmit={onSubmit}
-    >
-      <TextFieldComponent
-        name='email'
-        label='Email'
-        validationRules={{
-          required: "Email is required",
-          pattern: {
-            value: /^\S+@\S+$/i,
-            message: "Email is invalid",
-          },
-        }}
+    <form onSubmit={handleSubmit((data) => onSubmit(data))}>
+      <input {...register("name", { required: true })} />
+      {errors.name && <p>name is required.</p>}
+
+      <input
+        {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
       />
-      <TextFieldComponent
-        name='password'
-        label='Password'
-        validationRules={{ required: "Password is required", minLength: 6 }}
+      {errors.email && <p>email is required.</p>}
+
+      <input
+        {...register("password", {
+          required: true,
+          minLength: 8,
+        })}
       />
-    </FormProvider>
+      {errors.password && (
+        <p>password is required and must be at least 8 characters long.</p>
+      )}
+      <input type='submit' />
+    </form>
   );
 };
-
 export default LoginForm;

@@ -9,6 +9,7 @@ export const signup = async (name, email, password) => {
     body: JSON.stringify({ name, email, password }),
   });
   console.log(response);
+  setToken(response.token);
   return response.json();
 };
 
@@ -20,5 +21,14 @@ export const signin = async (email, password) => {
     },
     body: JSON.stringify({ email, password }),
   });
+  setToken(response.token);
   return response.json();
+};
+
+export const setToken = (token) => {
+  localStorage.setItem("token", token);
+};
+
+export const getToken = () => {
+  return localStorage.getItem("token");
 };

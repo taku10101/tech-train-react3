@@ -1,13 +1,16 @@
-import React from "react";
-import FormProvider from "../components/FormProvider";
-import TextFieldComponent from "../components/TextFieldComponent";
+import { useForm } from "react-hook-form";
 import { signup } from "../api/auth";
-const SignupForm = () => {
-  const onSubmit = (data) => {
-    const { email, password } = data;
+const Signup = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
+  const onSubmit = async (data) => {
     try {
-      signup({ email, password });
+      const response = await signup(data.name, data.email, data.password);
+      console.log(response);
       console.log(data);
     } catch (error) {
       console.error(error);
@@ -16,33 +19,26 @@ const SignupForm = () => {
   };
 
   return (
-    <FormProvider
-      defaultValues={{ name: "", email: "", password: "" }}
-      onSubmit={onSubmit}
-    >
-      <TextFieldComponent
-        name='name'
-        label='name'
-        validationRules={{ required: "First Name is required" }}
+    <form onSubmit={handleSubmit((data) => onSubmit(data))}>
+      <input {...register("name", { required: true })} />
+      {errors.name && <p>name is required.</p>}
+
+      <input
+        {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
       />
-      <TextFieldComponent
-        name='email'
-        label='Email'
-        validationRules={{
-          required: "Email is required",
-          pattern: {
-            value: /^\S+@\S+$/i,
-            message: "Email is invalid",
-          },
-        }}
+      {errors.email && <p>email is required.</p>}
+
+      <input
+        {...register("password", {
+          required: true,
+          minLength: 8,
+        })}
       />
-      <TextFieldComponent
-        name='password'
-        label='Password'
-        validationRules={{ required: "Password is required", minLength: 6 }}
-      />
-    </FormProvider>
+      {errors.password && (
+        <p>password is required and must be at least 8 characters long.</p>
+      )}
+      <input type='submit' />
+    </form>
   );
 };
-
-export default SignupForm;
+export default Signup;
