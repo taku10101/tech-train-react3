@@ -29,7 +29,7 @@ export const uploadIcon = async (iconUrl) => {
   const response = await fetch(`${baseURL}/icon`, {
     method: "POST",
     headers: {
-      "Content-Type": "multipart/form-data",
+      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
     body: iconUrl,
