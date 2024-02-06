@@ -26,9 +26,12 @@ const LoginForm = () => {
 
       <Scontainer>
         <input
-          {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
+          {...register("email", {
+            required: "Email is required",
+            pattern: { value: /^\S+@\S+$/i, message: "Invalid email format" },
+          })}
         />
-        {errors.email && <p>email is required.</p>}
+        {errors.email && <p>{errors.email.message}</p>}
       </Scontainer>
 
       <Scontainer>
