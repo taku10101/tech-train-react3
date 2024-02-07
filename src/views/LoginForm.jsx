@@ -20,11 +20,13 @@ const LoginForm = () => {
   return (
     <Sform onSubmit={handleSubmit((data) => onSubmit(data))}>
       <Scontainer>
+        <label>name</label>
         <input {...register("name", { required: true })} />
         {errors.name && <p>name is required.</p>}
       </Scontainer>
 
       <Scontainer>
+        <label>email</label>
         <input
           {...register("email", {
             required: "Email is required",
@@ -35,6 +37,7 @@ const LoginForm = () => {
       </Scontainer>
 
       <Scontainer>
+        <label>password</label>
         <input
           {...register("password", {
             required: true,
